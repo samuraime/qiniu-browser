@@ -1,0 +1,33 @@
+{
+  "name": "qiniu-up",
+  "version": "1.0.1",
+  "description": "qiniu upload",
+  "main": "dist/qiniu.min.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SamuraiMe",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "webpack": "^3.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuraime/qiniu-upload.git"
+  },
+  "keywords": [
+    "qiniu",
+    "upload"
+  ],
+  "bugs": {
+    "url": "https://github.com/samuraime/qiniu-upload/issues"
+  },
+  "homepage": "https://github.com/samuraime/qiniu-upload#readme"
+}

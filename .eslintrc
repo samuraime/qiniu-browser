@@ -1,0 +1,12 @@
+{
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": "airbnb-base",
+    "rules": {
+        "no-plusplus": [2, {
+            "allowForLoopAfterthoughts": true
+        }]
+    }
+}
