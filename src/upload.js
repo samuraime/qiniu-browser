@@ -58,7 +58,6 @@ const readFile = file => new Promise((resolve, reject) => {
 const makeBlock = (host, blockBuffer, firstChunkBuffer, token) => (
   post(`${host}/mkblk/${getLength(blockBuffer)}`, {
     'Content-Type': 'application/octet-stream',
-    'Content-Length': getLength(firstChunkBuffer),
     Authorization: `UpToken ${token}`,
   }, firstChunkBuffer)
 );
@@ -73,7 +72,6 @@ const postChunk = (chunkBuffer, lastChunk, token) => {
   const { host, ctx, offset } = lastChunk;
   return post(`${host}/bput/${ctx}/${offset}`, {
     'Content-Type': 'application/octet-stream',
-    'Content-Length': getLength(chunkBuffer),
     Authorization: `UpToken ${token}`,
   }, chunkBuffer);
 };
@@ -88,7 +86,6 @@ const postChunk = (chunkBuffer, lastChunk, token) => {
 const makeFile = (host, fileSize, ctxList, key, token) => (
   post(`${host}/mkfile/${fileSize}/key/${key}`, {
     'Content-Type': 'text/plain',
-    'Content-Length': getLength(ctxList),
     Authorization: `UpToken ${token}`,
   }, ctxList)
 );

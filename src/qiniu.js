@@ -49,7 +49,7 @@ export default function configUpload(config) {
     input.addEventListener('change', async (event) => {
       const files = Array.from(event.target.files).slice(0, limit);
       let uploaded = 0;
-
+      let uploadedFiles;
       try {
         files.forEach((file) => {
           if (file.size > maxSize) {
@@ -58,19 +58,20 @@ export default function configUpload(config) {
         });
 
         onStart(files);
-        const uploadedFiles = await Promise.all(files.map(file => (
+        uploadedFiles = await Promise.all(files.map(file => (
           uploadToQiniu(file, config).then((fileInfo) => {
             uploaded += 1;
             onProgress(uploaded, files.length);
             return fileInfo;
           })
         )));
-        onSuccess(uploadedFiles);
-        destory();
       } catch (error) {
         onError(error);
         destory();
+        return;
       }
+      onSuccess(uploadedFiles);
+      destory();
     });
 
     // 自动触发文件选择

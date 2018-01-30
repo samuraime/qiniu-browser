@@ -1,6 +1,6 @@
 {
   "name": "qiniu-up",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "qiniu upload",
   "main": "dist/qiniu.min.js",
   "scripts": {
