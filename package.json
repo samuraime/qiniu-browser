@@ -1,18 +1,25 @@
 {
   "name": "qiniu-browser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "qiniu browser upload",
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "sideEffects": false,
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
+    "build": "yarn build:auto && yarn build:esm",
+    "build:auto": "babel src -d dist",
+    "build:esm": "BABEL_TARGET=esm babel src -d dist/esm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "SamuraiMe",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0"
