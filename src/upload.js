@@ -83,12 +83,13 @@ const postChunk = (chunkBuffer, lastChunk, token) => {
 // Content-Length: <ctxListSize>
 // Authorization:  UpToken <UploadToken>
 // <ctxList>
-const makeFile = (host, fileSize, ctxList, key, token) => (
-  post(`${host}/mkfile/${fileSize}/key/${key}`, {
+const makeFile = (host, fileSize, ctxList, key, token) => {
+  const keyField = key ? `/key/${key}` : '';
+  return post(`${host}/mkfile/${fileSize}${keyField}`, {
     'Content-Type': 'text/plain',
     Authorization: `UpToken ${token}`,
   }, ctxList)
-);
+};
 
 const noop = () => {};
 

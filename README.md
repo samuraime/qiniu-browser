@@ -5,7 +5,7 @@
 ## Installation
 
 ```sh
-npm install qiniu-up --save
+npm install qiniu-browser --save
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install qiniu-up --save
 ### 需要选择文件
 
 ```javascript
-import configUpload from 'qiniu-up';
+import configUpload from 'qiniu-browser';
 
 const upload = configUpload({
   token: async () => { // token或者获取token的函数
@@ -51,7 +51,7 @@ upload({
 ### 不需要选择文件
 
 ```javascript
-import { upload } from 'qiniu-up';
+import { upload } from 'qiniu-browser';
 
 const { hash, key, name, size, type, url } = await upload(file, {
   token: async () => { // token或者获取token的函数

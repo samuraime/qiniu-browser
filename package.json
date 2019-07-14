@@ -1,33 +1,33 @@
 {
-  "name": "qiniu-up",
-  "version": "1.0.3",
-  "description": "qiniu upload",
-  "main": "dist/qiniu.min.js",
+  "name": "qiniu-browser",
+  "version": "0.1.0",
+  "description": "qiniu browser upload",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [
+    "src"
+  ],
   "scripts": {
-    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "SamuraiMe",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.15.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "webpack": "^3.10.0"
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/samuraime/qiniu-upload.git"
+    "url": "git+https://github.com/samuraime/qiniu-browser.git"
   },
   "keywords": [
     "qiniu",
+    "browser",
     "upload"
   ],
   "bugs": {
-    "url": "https://github.com/samuraime/qiniu-upload/issues"
+    "url": "https://github.com/samuraime/qiniu-browser/issues"
   },
-  "homepage": "https://github.com/samuraime/qiniu-upload#readme"
+  "homepage": "https://github.com/samuraime/qiniu-browser#readme"
 }
