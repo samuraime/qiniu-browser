@@ -14,11 +14,6 @@ const URLSafeBase64Encode = (v) => {
   return encoded.replace(/\//g, '_').replace(/\+/g, '-');
 };
 
-// const URLSafeBase64Decode = (v) => {
-//   const replaced = v.replace(/_/g, '/').replace(/-/g, '+');
-//   return window.atob(replaced);
-// };
-
 const post = (url, headers, body) => new Promise(async (resolve, reject) => {
   try {
     const response = await fetch(url, {
@@ -68,8 +63,8 @@ const makeBlock = (host, blockBuffer, firstChunkBuffer, token) => (
 // Content-Length: <nextChunkSize>
 // Authorization:  UpToken <UploadToken>
 // <nextChunkBinary>
-const postChunk = (chunkBuffer, lastChunk, token) => {
-  const { host, ctx, offset } = lastChunk;
+const postChunk = (host, chunkBuffer, lastChunk, token) => {
+  const { ctx, offset } = lastChunk;
   return post(`${host}/bput/${ctx}/${offset}`, {
     'Content-Type': 'application/octet-stream',
     Authorization: `UpToken ${token}`,
@@ -106,7 +101,7 @@ const noop = () => {};
  * @return {Promise}
  */
 const upload = async (file, {
-  host = 'http://upload.qiniu.com',
+  host = 'https://upload.qiniu.com',
   domain = '',
   token,
   getKey,
@@ -136,17 +131,16 @@ const upload = async (file, {
       if (i === 0) {
         lastUploadedChunk = await makeBlock(host, blockBuffer, chunkBuffer, uploadToken); // eslint-disable-line
       } else {
-        lastUploadedChunk = await postChunk(chunkBuffer, lastUploadedChunk, uploadToken); // eslint-disable-line
+        lastUploadedChunk = await postChunk(host, chunkBuffer, lastUploadedChunk, uploadToken); // eslint-disable-line
       }
       uploaded += getLength(chunkBuffer);
       onProgress(uploaded, fileSize);
     }
     return lastUploadedChunk;
   }));
-  const lastBlock = blockResults.slice(-1)[0];
   const ctxList = blockResults.map(b => b.ctx);
   const saveKey = typeof getKey === 'function' ? URLSafeBase64Encode(getKey(file)) : '';
-  const { hash, key } = await makeFile(lastBlock.host || host, fileSize, ctxList.join(','), saveKey, uploadToken);
+  const { hash, key } = await makeFile(host, fileSize, ctxList.join(','), saveKey, uploadToken);
   const { name, size, type } = file;
   const fileInfo = {
     hash,
